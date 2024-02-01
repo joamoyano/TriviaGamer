@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Gamer </title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+
+    <div class="start_btn"><button>Empezar </button></div>
+
+    <!-- Info  -->
+    <div class="info_box">
+        <div class="info-title"><span>Reglas</span></div>
+        <div class="info-list">
+            <div class="info">1. Solo tendras <span>15 Segundos</span> por pregunta.</div>
+            <div class="info">2. Una vez selecciones una respuesta, no podra ser modificada</div>
+            <div class="info">3. No podras seleccionar una respuesta cuando se acabe el tiempo</div>
+        </div>
+        <div class="buttons">
+            <button class="quit">Salir </button>
+            <button class="restart">Continar</button>
+        </div>
+    </div>
+
+    <!-- Preguntas -->
+    <div class="quiz_box">
+        <header>
+            <div class="title">Trivia Gamer</div>
+            <div class="timer">
+                <div class="time_left_txt">Tiempo</div>
+                <div class="timer_sec">15</div>
+            </div>
+            <div class="time_line"></div>
+        </header>
+        <section>
+            <div class="que_text">  
+            </div>
+            <div class="option_list">
+            </div>
+        </section>
+        <footer>
+            <div class="total_que">
+            </div>
+            <button class="next_btn">Siguiente</button>
+        </footer>
+    </div>
+
+    <!-- Resultado -->
+    <div class="result_box">
+        <div class="icon">
+            <i class="fas fa-crown"></i>
+        </div>
+        <div class="complete_text">Terminaste!</div>
+        <div class="score_text">
+     
+        </div>
+        <div class="buttons">
+            <button class="restart">Volver a jugar</button>
+            <button class="quit">Salir</button>
+        </div>
+    </div>
+
+   
+    <script src="js/questions.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
