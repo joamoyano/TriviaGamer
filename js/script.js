@@ -123,10 +123,18 @@ let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
 
+function disableOptions(){
+    const allOptions = option_list.children.length;
+    for(let i = 0; i < allOptions; i++){
+        option_list.children[i].classList.add("disabled");
+    }
+}
+
+
 function optionSelected(answer){
     clearInterval(counter);
-    clearInterval(counterLine); 
-    let userAns = answer.textContent; 
+    clearInterval(counterLine);
+    let userAns = answer.textContent;
     let correcAns = questions[que_count].answer;
     const allOptions = option_list.children.length; 
     
@@ -149,9 +157,7 @@ function optionSelected(answer){
             }
         }
     }
-    for(i=0; i < allOptions; i++){
-        option_list.children[i].classList.add("disabled");
-    }
+    disableOptions();
     if(next_btn) next_btn.classList.add("show");
 }
 
@@ -189,15 +195,13 @@ function startTimer(time){
             const allOptions = option_list.children.length; 
             let correcAns = questions[que_count].answer;
             for(i=0; i < allOptions; i++){
-                if(option_list.children[i].textContent == correcAns){ 
+                if(option_list.children[i].textContent == correcAns){
                     option_list.children[i].setAttribute("class", "option correct");
-                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); 
+                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag);
                     console.log("Tiempo: Se auto selecciono la opcion correcta.");
                 }
             }
-            for(i=0; i < allOptions; i++){
-                option_list.children[i].classList.add("disabled");
-            }
+            disableOptions();
             if(next_btn) next_btn.classList.add("show");
         }
     }
