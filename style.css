@@ -203,6 +203,8 @@ section .option_list .option{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    outline: none;
 }
 
 section .option_list .option:last-child{

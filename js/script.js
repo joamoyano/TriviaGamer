@@ -104,10 +104,10 @@ function showQuestions(index){
 
    
     let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-    let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
+    let option_tag = '<button class="option" type="button"><span>'+ questions[index].options[0] +'</span></button>'
+    + '<button class="option" type="button"><span>'+ questions[index].options[1] +'</span></button>'
+    + '<button class="option" type="button"><span>'+ questions[index].options[2] +'</span></button>'
+    + '<button class="option" type="button"><span>'+ questions[index].options[3] +'</span></button>';
     que_text.innerHTML = que_tag; 
     option_list.innerHTML = option_tag; 
     
