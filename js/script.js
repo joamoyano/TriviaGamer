@@ -1,32 +1,38 @@
 
 const start_btn = document.querySelector(".start_btn button");
 const info_box = document.querySelector(".info_box");
-const exit_btn = info_box.querySelector(".buttons .quit");
-const continue_btn = info_box.querySelector(".buttons .restart");
+const exit_btn = info_box ? info_box.querySelector(".buttons .quit") : null;
+const continue_btn = info_box ? info_box.querySelector(".buttons .restart") : null;
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
-const option_list = document.querySelector(".option_list");
+let option_list = document.querySelector(".option_list");
 const time_line = document.querySelector("header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 
 
-start_btn.onclick = ()=>{
-    info_box.classList.add("activeInfo");
+if(start_btn && info_box){
+    start_btn.onclick = ()=>{
+        info_box.classList.add("activeInfo");
+    }
 }
 
-exit_btn.onclick = ()=>{
-    info_box.classList.remove("activeInfo"); 
+if(exit_btn && info_box){
+    exit_btn.onclick = ()=>{
+        info_box.classList.remove("activeInfo");
+    }
 }
 
 
-continue_btn.onclick = ()=>{
-    info_box.classList.remove("activeInfo");
-    quiz_box.classList.add("activeQuiz"); 
-    showQuetions(0); 
-    queCounter(1); 
-    startTimer(15); 
-    startTimerLine(0); 
+if(continue_btn && info_box && quiz_box){
+    continue_btn.onclick = ()=>{
+        info_box.classList.remove("activeInfo");
+        quiz_box.classList.add("activeQuiz");
+        showQuetions(0);
+        queCounter(1);
+        startTimer(15);
+        startTimerLine(0);
+    }
 }
 
 let timeValue =  15;
@@ -37,53 +43,58 @@ let counter;
 let counterLine;
 let widthValue = 0;
 
-const restart_quiz = result_box.querySelector(".buttons .restart");
-const quit_quiz = result_box.querySelector(".buttons .quit");
+const restart_quiz = result_box ? result_box.querySelector(".buttons .restart") : null;
+const quit_quiz = result_box ? result_box.querySelector(".buttons .quit") : null;
 
 
-restart_quiz.onclick = ()=>{
-    quiz_box.classList.add("activeQuiz"); 
-    result_box.classList.remove("activeResult");
-    timeValue = 15; 
-    que_count = 0;
-    que_numb = 1;
-    userScore = 0;
-    widthValue = 0;
-    showQuetions(que_count); 
-    queCounter(que_numb); 
-    clearInterval(counter); 
-    clearInterval(counterLine); 
-    startTimer(timeValue);
-    startTimerLine(widthValue); 
-    timeText.textContent = "Time Left"; 
-    next_btn.classList.remove("show"); 
+if(restart_quiz && result_box && quiz_box){
+    restart_quiz.onclick = ()=>{
+        quiz_box.classList.add("activeQuiz");
+        result_box.classList.remove("activeResult");
+        timeValue = 15;
+        que_count = 0;
+        que_numb = 1;
+        userScore = 0;
+        widthValue = 0;
+        showQuetions(que_count);
+        queCounter(que_numb);
+        clearInterval(counter);
+        clearInterval(counterLine);
+        startTimer(timeValue);
+        startTimerLine(widthValue);
+        timeText.textContent = "Time Left";
+        if(next_btn) next_btn.classList.remove("show");
+    }
 }
 
-
-quit_quiz.onclick = ()=>{
-    window.location.reload(); 
+if(quit_quiz){
+    quit_quiz.onclick = ()=>{
+        window.location.reload();
+    }
 }
 
-const next_btn = document.querySelector("footer .next_btn");
+let next_btn = document.querySelector("footer .next_btn");
 const bottom_ques_counter = document.querySelector("footer .total_que");
 
 
-next_btn.onclick = ()=>{
-    if(que_count < questions.length - 1){ 
-        que_count++; 
-        que_numb++; 
-        showQuetions(que_count); 
-        queCounter(que_numb); 
-        clearInterval(counter);
-        clearInterval(counterLine); 
-        startTimer(timeValue); 
-        startTimerLine(widthValue); 
-        timeText.textContent = "Tiempo"; 
-        next_btn.classList.remove("show"); 
-    }else{
-        clearInterval(counter); 
-        clearInterval(counterLine); 
-        showResult(); 
+if(next_btn){
+    next_btn.onclick = ()=>{
+        if(que_count < questions.length - 1){
+            que_count++;
+            que_numb++;
+            showQuetions(que_count);
+            queCounter(que_numb);
+            clearInterval(counter);
+            clearInterval(counterLine);
+            startTimer(timeValue);
+            startTimerLine(widthValue);
+            timeText.textContent = "Tiempo";
+            next_btn.classList.remove("show");
+        }else{
+            clearInterval(counter);
+            clearInterval(counterLine);
+            showResult();
+        }
     }
 }
 
@@ -141,7 +152,7 @@ function optionSelected(answer){
     for(i=0; i < allOptions; i++){
         option_list.children[i].classList.add("disabled");
     }
-    next_btn.classList.add("show");
+    if(next_btn) next_btn.classList.add("show");
 }
 
 function showResult(){
@@ -185,9 +196,9 @@ function startTimer(time){
                 }
             }
             for(i=0; i < allOptions; i++){
-                option_list.children[i].classList.add("disabled"); 
+                option_list.children[i].classList.add("disabled");
             }
-            next_btn.classList.add("show"); 
+            if(next_btn) next_btn.classList.add("show");
         }
     }
 }
@@ -204,7 +215,22 @@ function startTimerLine(time){
 }
 
 function queCounter(index){
-    
+
     let totalQueCounTag = '<span><p>'+ index +'</p> de <p>'+ questions.length +'</p> Preguntas </span>';
-    bottom_ques_counter.innerHTML = totalQueCounTag; 
+    bottom_ques_counter.innerHTML = totalQueCounTag;
+}
+
+const state = {
+    get userScore(){ return userScore; },
+    set userScore(v){ userScore = v; },
+    get que_count(){ return que_count; },
+    set que_count(v){ que_count = v; },
+    get option_list(){ return option_list; },
+    set option_list(v){ option_list = v; },
+    get next_btn(){ return next_btn; },
+    set next_btn(v){ next_btn = v; }
+};
+
+if(typeof module !== 'undefined'){
+    module.exports = { optionSelected, state };
 }
