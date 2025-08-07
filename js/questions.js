@@ -1,5 +1,5 @@
 
-let questions = [
+const questions = [
     {
     numb: 1,
     question: "¿Cuál de los siguientes juegos pertenece al género de battle royale?",
