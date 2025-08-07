@@ -103,7 +103,7 @@ function showQuetions(index){
     const option = option_list.querySelectorAll(".option");
 
     
-    for(i=0; i < option.length; i++){
+    for (let i = 0; i < option.length; i++){
         option[i].setAttribute("onclick", "optionSelected(this)");
     }
 }
@@ -130,7 +130,7 @@ function optionSelected(answer){
         answer.insertAdjacentHTML("beforeend", crossIconTag); 
         console.log("Wrong Answer");
 
-        for(i=0; i < allOptions; i++){
+        for (let i = 0; i < allOptions; i++){
             if(option_list.children[i].textContent == correcAns){ 
                 option_list.children[i].setAttribute("class", "option correct"); 
                 option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); 
@@ -138,7 +138,7 @@ function optionSelected(answer){
             }
         }
     }
-    for(i=0; i < allOptions; i++){
+    for (let i = 0; i < allOptions; i++){
         option_list.children[i].classList.add("disabled");
     }
     next_btn.classList.add("show");
@@ -177,14 +177,14 @@ function startTimer(time){
             timeText.textContent = "Tiempo"; 
             const allOptions = option_list.children.length; 
             let correcAns = questions[que_count].answer;
-            for(i=0; i < allOptions; i++){
+            for (let i = 0; i < allOptions; i++){
                 if(option_list.children[i].textContent == correcAns){ 
                     option_list.children[i].setAttribute("class", "option correct");
                     option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); 
                     console.log("Tiempo: Se auto selecciono la opcion correcta.");
                 }
             }
-            for(i=0; i < allOptions; i++){
+            for (let i = 0; i < allOptions; i++){
                 option_list.children[i].classList.add("disabled"); 
             }
             next_btn.classList.add("show"); 
