@@ -113,9 +113,8 @@ function showQuestions(index){
     
     const option = option_list.querySelectorAll(".option");
 
-    
-    for(i=0; i < option.length; i++){
-        option[i].setAttribute("onclick", "optionSelected(this)");
+    for (i = 0; i < option.length; i++) {
+        option[i].addEventListener('click', optionSelected);
     }
 }
 
@@ -125,26 +124,27 @@ let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
 function optionSelected(answer){
     clearInterval(counter);
-    clearInterval(counterLine); 
-    let userAns = answer.textContent; 
+    clearInterval(counterLine);
+    const selected = answer.currentTarget || answer;
+    let userAns = selected.textContent;
     let correcAns = questions[que_count].answer;
-    const allOptions = option_list.children.length; 
-    
-    if(userAns == correcAns){ 
+    const allOptions = option_list.children.length;
+
+    if(userAns == correcAns){
         userScore += 1;
-        answer.classList.add("correct"); 
-        answer.insertAdjacentHTML("beforeend", tickIconTag);
+        selected.classList.add("correct");
+        selected.insertAdjacentHTML("beforeend", tickIconTag);
         console.log("Correct Answer");
         console.log("Your correct answers = " + userScore);
     }else{
-        answer.classList.add("incorrect"); 
-        answer.insertAdjacentHTML("beforeend", crossIconTag); 
+        selected.classList.add("incorrect");
+        selected.insertAdjacentHTML("beforeend", crossIconTag);
         console.log("Wrong Answer");
 
         for(i=0; i < allOptions; i++){
-            if(option_list.children[i].textContent == correcAns){ 
-                option_list.children[i].setAttribute("class", "option correct"); 
-                option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); 
+            if(option_list.children[i].textContent == correcAns){
+                option_list.children[i].setAttribute("class", "option correct");
+                option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag);
                 console.log("Auto selected correct answer.");
             }
         }
