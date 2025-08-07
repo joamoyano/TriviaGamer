@@ -204,12 +204,14 @@ function startTimer(time){
 }
 
 function startTimerLine(time){
-    counterLine = setInterval(timer, 29);
+    const maxWidth = time_line.parentElement.offsetWidth;
+    const interval = (timeValue * 1000) / maxWidth;
+    counterLine = setInterval(timer, interval);
     function timer(){
-        time += 1; 
-        time_line.style.width = time + "px"; 
-        if(time > 549){ 
-            clearInterval(counterLine); 
+        time += 1;
+        time_line.style.width = time + "px";
+        if(time >= maxWidth){
+            clearInterval(counterLine);
         }
     }
 }
