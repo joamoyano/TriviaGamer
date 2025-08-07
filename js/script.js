@@ -55,7 +55,7 @@ restart_quiz.onclick = ()=>{
     clearInterval(counterLine); 
     startTimer(timeValue);
     startTimerLine(widthValue); 
-    timeText.textContent = "Time Left"; 
+    timeText.textContent = "Tiempo";
     next_btn.classList.remove("show"); 
 }
 
