@@ -28,7 +28,7 @@ if(continue_btn && info_box && quiz_box){
     continue_btn.onclick = ()=>{
         info_box.classList.remove("activeInfo");
         quiz_box.classList.add("activeQuiz");
-        showQuetions(0);
+        showQuestions(0);
         queCounter(1);
         startTimer(15);
         startTimerLine(0);
@@ -56,7 +56,7 @@ if(restart_quiz && result_box && quiz_box){
         que_numb = 1;
         userScore = 0;
         widthValue = 0;
-        showQuetions(que_count);
+        showQuestions(que_count);
         queCounter(que_numb);
         clearInterval(counter);
         clearInterval(counterLine);
@@ -82,7 +82,7 @@ if(next_btn){
         if(que_count < questions.length - 1){
             que_count++;
             que_numb++;
-            showQuetions(que_count);
+            showQuestions(que_count);
             queCounter(que_numb);
             clearInterval(counter);
             clearInterval(counterLine);
@@ -99,7 +99,7 @@ if(next_btn){
 }
 
 
-function showQuetions(index){
+function showQuestions(index){
     const que_text = document.querySelector(".que_text");
 
    
