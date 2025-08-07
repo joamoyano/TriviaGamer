@@ -8,10 +8,10 @@ describe('optionSelected', () => {
     const dom = new JSDOM(`
       <body>
         <div class="option_list">
-          <div class="option"><span>A</span></div>
-          <div class="option"><span>B</span></div>
-          <div class="option"><span>C</span></div>
-          <div class="option"><span>D</span></div>
+          <button class="option"><span>A</span></button>
+          <button class="option"><span>B</span></button>
+          <button class="option"><span>C</span></button>
+          <button class="option"><span>D</span></button>
         </div>
         <footer><div class="next_btn"></div></footer>
       </body>
